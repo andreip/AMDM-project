@@ -1,5 +1,9 @@
+import matplotlib
+matplotlib.use('TkAgg')
+import pylab as pl
+
 filename = 'tweets_15m.txt'
-tweets_max = 1000
+tweets_max = 10000
 read_chunk = 100
 
 tweet_terms = {}
@@ -21,3 +25,9 @@ for (word,n) in tweet_terms.iteritems():
     terms_in_tweets_count[n] = terms_in_tweets_count.get(n, 0) + 1
 
 """omas"""
+
+pl.plot(terms_in_tweets_count.keys(), terms_in_tweets_count.values(), 'rx')
+pl.yscale('log')
+pl.xscale('log')
+pl.xlabel('appears in k tweets')
+pl.show()
