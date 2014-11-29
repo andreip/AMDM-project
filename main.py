@@ -38,8 +38,9 @@ def get_terms_in_k_tweets(tweet_terms):
     return terms_in_tweets_count
 
 tweet_terms = get_words_appearances()
-print 'Total number of words are', len(tweet_terms.keys())
+print 'Total number of words are', len(tweet_terms)
 terms_in_tweets_count = get_terms_in_k_tweets(tweet_terms)
+print 'Total number of counts are', len(terms_in_tweets_count)
 
 plot1(terms_in_tweets_count)
 plot2(terms_in_tweets_count)
