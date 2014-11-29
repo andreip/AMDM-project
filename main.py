@@ -17,8 +17,9 @@ with open(filename) as f:
         tweets = f.readlines(read_chunk)
         # Tweets are finished.
         if not tweets:
+            print 'exit as no more tweets to read'
             break
-        read_tweets += read_chunk
+        read_tweets += len(tweets)
         for raw_tweet in tweets:
             tweet = raw_tweet.strip('\n').split('\t')
             for word in set(tweet):
