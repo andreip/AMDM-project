@@ -5,8 +5,9 @@ import pylab as pl
 import time
 
 filename = 'tweets_15m.txt'
-tweets_max = 1000
-read_chunk = 100
+#filename = 'tweets_small.txt'
+tweets_max = 1000**2 * 15
+read_chunk = 1000**2
 
 print time.time()
 print 'Going through all words in file'
