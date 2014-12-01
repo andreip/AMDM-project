@@ -1,4 +1,3 @@
-import numpy as np
 import matplotlib
 matplotlib.use('TkAgg')
 import pylab as pl
