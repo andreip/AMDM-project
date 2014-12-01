@@ -2,7 +2,7 @@ import random
 import time
 import math
 
-from plots import plot1, plot2, plot3
+#from plots import plot1, plot2, plot3
 from helpers import timing
 
 filename = 'tweets_15m.txt'
