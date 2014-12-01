@@ -1,7 +1,9 @@
+from functools import wraps
 import time
 
 """omas"""
 def timing(f):
+    @wraps(f)
     def wrap(*args):
         time1 = time.time()
         ret = f(*args)
