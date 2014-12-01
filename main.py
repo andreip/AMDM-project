@@ -1,6 +1,6 @@
-import numpy as np
 import random
 import time
+import math
 
 from plots import plot1, plot2, plot3
 from helpers import timing
@@ -62,8 +62,8 @@ def angle_dist(x, y, terms=None):
         n_y = len(y)
     # Edge case, just return pi/2 as it's division by 0.
     if n_x == 0 or n_y == 0:
-        return np.pi / 2
-    return np.arccos(n_common_terms / np.sqrt(n_x * n_y))
+        return math.pi / 2
+    return math.acos(n_common_terms / math.sqrt(n_x * n_y))
 
 @timing
 def bf_algorithm(q_tweets, db_tweets, terms=None):
