@@ -73,6 +73,7 @@ def bf_algorithm(q_tweets, db_tweets, terms=None):
     # Bigger than pi/2 which is the max angle.
     nn_tweets_angles = [4] *  len(q_tweets)
     for j, db_tweet in enumerate(db_tweets):
+        print float(j)/len(db_tweets)*100," percent complete         \r",
         for i, q_tweet in enumerate(q_tweets):
             angle = angle_dist(q_tweet, db_tweet)
             if angle < nn_tweets_angles[i]:
