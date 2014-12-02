@@ -1,7 +1,7 @@
-import random
-import time
 import math
+import random
 import sys
+import time
 
 #from plots import plot1, plot2, plot3
 from helpers import timing
@@ -67,7 +67,7 @@ def angle_dist(x, y, terms=None):
     return math.acos(n_common_terms / math.sqrt(n_x * n_y))
 
 @timing
-def bf_algorithm(q_tweets, db_tweets, terms=None):
+def bf_algorithm(q_tweets, db_tweets):
     # We'll store here all the indexes of the NN
     # of the queries.
     nn_tweets_idx = [-1] * len(q_tweets)
@@ -80,7 +80,43 @@ def bf_algorithm(q_tweets, db_tweets, terms=None):
             if angle < nn_tweets_angles[i]:
                 nn_tweets_angles[i] = angle
                 nn_tweets_idx[i] = j
-    return nn_tweets_idx, nn_tweets_angles
+    return nn_tweets_idx
+
+@timing
+def construct_term_indexes(tweets):
+    print 'Constructing index of terms for %d tweets' % len(tweets)
+    term_indexes = {}
+    for i, tweet in enumerate(tweets):
+        for term in tweet:
+            indexes = term_indexes.get(term, [])
+            indexes.append(i)
+            term_indexes[term] = indexes
+    return term_indexes
+
+@timing
+def speedy_algorithm(q_tweets, db_tweets):
+    # We'll store here all the indexes of the NN
+    # of the queries.
+    nn_tweets_idx = [-1] * len(q_tweets)
+    # We first need to build up an index. The dictionary will have
+    # { key : value } = {term : [index_tweet1, index_tweet10, ... ] },
+    # storing an array of all indexes where the term appears in the
+    # db tweets.
+    db_term_index = construct_term_indexes(db_tweets)
+    # Now we can go through each query and check which index appears the
+    # most in the query's terms by doing a reunion over the query's term's
+    # indexes and seeing which index in the db tweets appears the most.
+    for i, q_tweet in enumerate(q_tweets):
+        indexes = []
+        for term in q_tweet:
+            indexes += db_term_index.get(term, [])
+        # If there are no indexes with at least one term, we just skip
+        # the tweet, no NN found for it, leave -1 index.
+        if len(indexes) == 0:
+            continue
+        # Get the element with the smallest angle.
+        nn_tweets_idx[i] = min(set(indexes), key=lambda x: angle_dist(db_tweets[x], q_tweet))
+    return nn_tweets_idx
 
 @timing
 def filter_terms(tweets, terms):
@@ -115,9 +151,9 @@ def main(algorithm):
     #plot2(terms_in_k_tweets)
     #plot3(tweet_terms)
 
-    #print '== with all terms =='
-    #(nn_tweets_idx, _) = algorithm(q_tweets, db_tweets)
-    #print nn_tweets_idx
+    print '== with all terms =='
+    nn_tweets_idx = algorithm(q_tweets, db_tweets)
+    print nn_tweets_idx
 
     print '== d-frequent =='
     for j in range(0,15,2):
@@ -129,7 +165,7 @@ def main(algorithm):
         sys.stdout.flush()
         q_tweets_j = filter_terms(q_tweets, terms)
         db_tweets_j = filter_terms(db_tweets, terms)
-        algorithm(q_tweets_j, db_tweets_j, terms)
+        algorithm(q_tweets_j, db_tweets_j)
 
     print '== d-infrequent =='
     for j in range(0,15,2):
@@ -141,7 +177,7 @@ def main(algorithm):
         sys.stdout.flush()
         q_tweets_j = filter_terms(q_tweets, terms)
         db_tweets_j = filter_terms(db_tweets, terms)
-        algorithm(q_tweets_j, db_tweets_j, terms)
+        algorithm(q_tweets_j, db_tweets_j)
 
     print '== d-random =='
     for j in range(0,15,2):
@@ -153,7 +189,8 @@ def main(algorithm):
         sys.stdout.flush()
         q_tweets_j = filter_terms(q_tweets, terms)
         db_tweets_j = filter_terms(db_tweets, terms)
-        algorithm(q_tweets_j, db_tweets_j, terms)
+        algorithm(q_tweets_j, db_tweets_j)
 
 if __name__ == '__main__':
-    main(bf_algorithm)
+    #main(bf_algorithm)
+    main(speedy_algorithm)
