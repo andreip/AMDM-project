@@ -85,7 +85,7 @@ def bf_algorithm(q_tweets, db_tweets, terms=None):
 def filter_terms(tweets, terms):
     tweets_new = []
     for t in tweets:
-        t_new = filter(terms.get, t)
+        t_new = set(filter(terms.get, t))
         if t_new:
             tweets_new.append(t_new)
     return tweets_new
