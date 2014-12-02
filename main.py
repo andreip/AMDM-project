@@ -128,22 +128,27 @@ def main(algorithm):
         db_tweets_j = filter_terms(db_tweets, terms)
         algorithm(q_tweets_j, db_tweets_j, terms)
 
-    #print '== d-infrequent =='
-    #f_out.write('== d-infrequent ==' + '\n')
-    #for j in range(0,15,2):
-    #    d = 100 * 2**j
-    #    print 'j=%d, d=%d' % (j, d)
-    #    f_out.write('j=%d, d=%d\n' % (j, d))
-    #    terms = dict(sorted_terms[-d:])
-    #    algorithm(terms, f_out)
-    #print '== d-random =='
-    #f_out.write('== d-random ==' + '\n')
-    #for j in range(0,15,2):
-    #    d = 100 * 2**j
-    #    print 'j=%d, d=%d' % (j, d)
-    #    f_out.write('j=%d, d=%d\n' % (j, d))
-    #    terms = dict(random.sample(sorted_terms, d))
-    #    algorithm(terms, f_out)
+    print '== d-infrequent =='
+    for j in range(0,15,2):
+        d = 100 * 2**j
+        print 'j=%d, d=%d' % (j, d)
+        print time.time()
+        terms = dict(sorted_terms[-d:])
+        print time.time()
+        q_tweets_j = filter_terms(q_tweets, terms)
+        db_tweets_j = filter_terms(db_tweets, terms)
+        algorithm(q_tweets_j, db_tweets_j, terms)
+
+    print '== d-random =='
+    for j in range(0,15,2):
+        d = 100 * 2**j
+        print 'j=%d, d=%d' % (j, d)
+        print time.time()
+        terms = dict(random.sample(sorted_terms, min(len(sorted_terms), d)))
+        print time.time()
+        q_tweets_j = filter_terms(q_tweets, terms)
+        db_tweets_j = filter_terms(db_tweets, terms)
+        algorithm(q_tweets_j, db_tweets_j, terms)
 
 if __name__ == '__main__':
     main(bf_algorithm)
