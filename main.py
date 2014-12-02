@@ -1,6 +1,7 @@
 import random
 import time
 import math
+import sys
 
 #from plots import plot1, plot2, plot3
 from helpers import timing
@@ -73,7 +74,7 @@ def bf_algorithm(q_tweets, db_tweets, terms=None):
     # Bigger than pi/2 which is the max angle.
     nn_tweets_angles = [4] *  len(q_tweets)
     for j, db_tweet in enumerate(db_tweets):
-        print float(j)/len(db_tweets)*100," percent complete         \r",
+        #print float(j)/len(db_tweets)*100," percent complete         \r",
         for i, q_tweet in enumerate(q_tweets):
             angle = angle_dist(q_tweet, db_tweet)
             if angle < nn_tweets_angles[i]:
@@ -107,6 +108,7 @@ def main(algorithm):
     sorted_terms = sorted(tweet_terms.iteritems(), key=lambda x: x[1],
                           reverse=True)
     print time.time()
+    sys.stdout.flush()
 
     # Plots for task1. Don't need to run again.
     #plot1(terms_in_k_tweets)
@@ -124,6 +126,7 @@ def main(algorithm):
         print time.time()
         terms = dict(sorted_terms[:d])
         print time.time()
+        sys.stdout.flush()
         q_tweets_j = filter_terms(q_tweets, terms)
         db_tweets_j = filter_terms(db_tweets, terms)
         algorithm(q_tweets_j, db_tweets_j, terms)
@@ -135,6 +138,7 @@ def main(algorithm):
         print time.time()
         terms = dict(sorted_terms[-d:])
         print time.time()
+        sys.stdout.flush()
         q_tweets_j = filter_terms(q_tweets, terms)
         db_tweets_j = filter_terms(db_tweets, terms)
         algorithm(q_tweets_j, db_tweets_j, terms)
@@ -146,6 +150,7 @@ def main(algorithm):
         print time.time()
         terms = dict(random.sample(sorted_terms, min(len(sorted_terms), d)))
         print time.time()
+        sys.stdout.flush()
         q_tweets_j = filter_terms(q_tweets, terms)
         db_tweets_j = filter_terms(db_tweets, terms)
         algorithm(q_tweets_j, db_tweets_j, terms)
