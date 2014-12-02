@@ -81,6 +81,15 @@ def bf_algorithm(q_tweets, db_tweets, terms=None):
                 nn_tweets_idx[i] = j
     return nn_tweets_idx, nn_tweets_angles
 
+@timing
+def filter_terms(tweets, terms):
+    tweets_new = []
+    for t in tweets:
+        t_new = filter(terms.get, t)
+        if t_new:
+            tweets_new.append(t_new)
+    return tweets_new
+
 def main(algorithm):
     random.seed(time.time())
 
@@ -104,15 +113,21 @@ def main(algorithm):
     #plot2(terms_in_k_tweets)
     #plot3(tweet_terms)
 
-    print '== with all terms =='
-    (nn_tweets_idx, _) = algorithm(q_tweets, db_tweets)
-    print nn_tweets_idx
-    #print '== d-frequent =='
-    #for j in range(0,15,2):
-    #    d = 100 * 2**j
-    #    print 'j=%d, d=%d' % (j, d)
-    #    terms = dict(sorted_terms[:d])
-    #    algorithm(terms, f_out)
+    #print '== with all terms =='
+    #(nn_tweets_idx, _) = algorithm(q_tweets, db_tweets)
+    #print nn_tweets_idx
+
+    print '== d-frequent =='
+    for j in range(0,15,2):
+        d = 100 * 2**j
+        print 'j=%d, d=%d' % (j, d)
+        print time.time()
+        terms = dict(sorted_terms[:d])
+        print time.time()
+        q_tweets_j = filter_terms(q_tweets, terms)
+        db_tweets_j = filter_terms(db_tweets, terms)
+        algorithm(q_tweets_j, db_tweets_j, terms)
+
     #print '== d-infrequent =='
     #f_out.write('== d-infrequent ==' + '\n')
     #for j in range(0,15,2):
