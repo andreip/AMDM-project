@@ -53,3 +53,104 @@ bf_algorithm function took 9312397.804 ms
 j=14, d=1638400
 1417610603.42
 1417610606.12
+filter_terms function took 5.044 ms
+filter_terms function took 135854.957 ms
+bf_algorithm function took 9415518.030 ms
+== d-infrequent ==
+j=0, d=100
+1417620157.5
+1417620157.5
+filter_terms function took 1.035 ms
+filter_terms function took 15333.573 ms
+bf_algorithm function took 0.135 ms
+j=2, d=400
+1417620172.83
+1417620172.83
+filter_terms function took 1.234 ms
+filter_terms function took 18157.566 ms
+bf_algorithm function took 0.567 ms
+j=4, d=1600
+1417620190.99
+1417620190.99
+filter_terms function took 1.352 ms
+filter_terms function took 19255.336 ms
+bf_algorithm function took 5.424 ms
+j=6, d=6400
+1417620210.26
+1417620210.26
+filter_terms function took 1.487 ms
+filter_terms function took 20876.790 ms
+bf_algorithm function took 0.282 ms
+j=8, d=25600
+1417620231.14
+1417620231.15
+filter_terms function took 1.485 ms
+filter_terms function took 22689.849 ms
+bf_algorithm function took 1.064 ms
+j=10, d=102400
+1417620253.84
+1417620253.91
+filter_terms function took 2.310 ms
+filter_terms function took 30238.281 ms
+bf_algorithm function took 45.273 ms
+j=12, d=409600
+1417620284.2
+1417620284.54
+filter_terms function took 2.380 ms
+filter_terms function took 32835.008 ms
+bf_algorithm function took 568.474 ms
+j=14, d=1638400
+1417620317.95
+1417620320.02
+filter_terms function took 3.736 ms
+filter_terms function took 48968.806 ms
+bf_algorithm function took 9345.785 ms
+== d-random ==
+j=0, d=100
+1417620378.34
+1417620378.34
+filter_terms function took 1.124 ms
+filter_terms function took 17207.636 ms
+bf_algorithm function took 0.065 ms
+j=2, d=400
+1417620395.54
+1417620395.55
+filter_terms function took 1.271 ms
+filter_terms function took 19754.787 ms
+bf_algorithm function took 31.269 ms
+j=4, d=1600
+1417620415.33
+1417620415.34
+filter_terms function took 1.864 ms
+filter_terms function took 23614.335 ms
+bf_algorithm function took 0.677 ms
+j=6, d=6400
+1417620438.96
+1417620438.97
+filter_terms function took 1.965 ms
+filter_terms function took 28213.458 ms
+bf_algorithm function took 23.020 ms
+j=8, d=25600
+1417620467.21
+1417620467.25
+filter_terms function took 2.161 ms
+filter_terms function took 26706.746 ms
+bf_algorithm function took 855.715 ms
+j=10, d=102400
+1417620494.82
+1417620494.96
+filter_terms function took 2.442 ms
+filter_terms function took 34784.174 ms
+bf_algorithm function took 26530.666 ms
+j=12, d=409600
+1417620556.28
+1417620557.06
+filter_terms function took 2.853 ms
+filter_terms function took 42561.788 ms
+bf_algorithm function took 265366.221 ms
+j=14, d=1638400
+1417620864.99
+1417620868.73
+filter_terms function took 3.876 ms
+filter_terms function took 62608.154 ms
+bf_algorithm function took 2067509.706 ms
