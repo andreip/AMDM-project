@@ -1,0 +1,55 @@
+get_tweets function took 102738.249 ms
+get_terms_appearances function took 158318.050 ms
+Total number of terms are 8672920
+Counting terms in k tweets
+get_terms_in_k_tweets function took 1417.320 ms
+Total number of k tweets are 6994
+Sorting tweet terms by appearances.
+1417553562.57
+1417553573.89
+== d-frequent ==
+j=0, d=100
+1417553573.89
+1417553573.89
+filter_terms function took 117.208 ms
+filter_terms function took 59554.783 ms
+bf_algorithm function took 5390959.118 ms
+j=2, d=400
+1417559024.52
+1417559024.53
+filter_terms function took 3.027 ms
+filter_terms function took 61175.765 ms
+bf_algorithm function took 6675524.397 ms
+j=4, d=1600
+1417565761.23
+1417565761.23
+filter_terms function took 4.066 ms
+filter_terms function took 87971.937 ms
+bf_algorithm function took 7710545.409 ms
+j=6, d=6400
+1417573559.75
+1417573559.76
+filter_terms function took 3.279 ms
+filter_terms function took 75443.430 ms
+bf_algorithm function took 8685609.741 ms
+j=8, d=25600
+1417582320.81
+1417582320.85
+filter_terms function took 4.815 ms
+filter_terms function took 132065.007 ms
+bf_algorithm function took 9290607.657 ms
+j=10, d=102400
+1417591743.52
+1417591743.63
+filter_terms function took 13.389 ms
+filter_terms function took 104766.980 ms
+bf_algorithm function took 9336967.539 ms
+j=12, d=409600
+1417601185.37
+1417601185.94
+filter_terms function took 26.228 ms
+filter_terms function took 105059.944 ms
+bf_algorithm function took 9312397.804 ms
+j=14, d=1638400
+1417610603.42
+1417610606.12
