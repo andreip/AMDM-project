@@ -118,6 +118,7 @@ def speedy_algorithm(q_tweets, db_tweets):
         nn_tweets_idx[i] = min(set(indexes), key=lambda x: angle_dist(db_tweets[x], q_tweet))
     return nn_tweets_idx
 
+@timing
 def speedy_algorithm2(q_tweets, db_tweets):
     # We'll store here all the indexes of the NN
     # of the queries.
