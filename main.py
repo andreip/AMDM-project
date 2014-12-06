@@ -118,6 +118,37 @@ def speedy_algorithm(q_tweets, db_tweets):
         nn_tweets_idx[i] = min(set(indexes), key=lambda x: angle_dist(db_tweets[x], q_tweet))
     return nn_tweets_idx
 
+def speedy_algorithm2(q_tweets, db_tweets):
+    # We'll store here all the indexes of the NN
+    # of the queries.
+    nn_tweets_idx = [-1] * len(q_tweets)
+    # Sort db tweets by their number of terms.
+    time1 = time.time()
+    db_tweets_s = sorted(enumerate(db_tweets), key=lambda x: len(x[1]))
+    time2 = time.time()
+    print '%s function took %0.3f ms' % ('sorting tweets by len', (time2-time1)*1000.0)
+    print 'max length of tweet is', len(db_tweets_s[-1][1])
+
+    for i, q_tweet in enumerate(q_tweets):
+        print float(i)/len(q_tweets)*100," percent complete         \r"
+        best_angle, best_idx, stop_len = None, None, 150
+        for j, db_tweet in db_tweets_s:
+            # Try stopping early in case going further does not give
+            # better results.
+            if len(db_tweet) > stop_len:
+                print 'stopping early at length', len(db_tweet)
+                break
+            angle = len(q_tweet & db_tweet) / math.sqrt(len(db_tweet))
+            if angle > best_angle or not best_angle:
+                best_angle = angle
+                best_idx = j
+                if best_angle:
+                    stop_len = int(len(q_tweet) / best_angle)**2
+                    print 'stop len updated to', stop_len
+        nn_tweets_idx[i] = best_idx
+    return nn_tweets_idx
+
+
 @timing
 def filter_terms(tweets, terms):
     tweets_new = []
@@ -193,4 +224,5 @@ def main(algorithm):
 
 if __name__ == '__main__':
     #main(bf_algorithm)
-    main(speedy_algorithm)
+    #main(speedy_algorithm)
+    main(speedy_algorithm2)
